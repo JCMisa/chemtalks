@@ -3,24 +3,37 @@
 import HomeCarousel from "@/components/custom/HomeCarousel";
 import { Button } from "@/components/ui/button";
 import { UserButton, useUser } from "@clerk/nextjs";
-import { LogIn } from "lucide-react";
+import { LogIn, Rocket } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
   const { user } = useUser();
+  const router = useRouter();
 
   return (
-    <div className="">
+    <div className="relative">
+      {/* user button */}
+      {
+        user &&
+        <div className='absolute top-3 right-3 z-50'>
+          <UserButton />
+        </div>
+      }
       <HomeCarousel />
       <div className="mt-3 p-5">
         {/* header and description texts */}
         <div className='flex flex-row items-center justify-between'>
-          <h2 className='text-2xl text-light font-bold'>Game Title</h2>
           {user ? (
-            <Button className='felx flex-row items-center gap-3'>
-              <p>Get Started</p> <UserButton />
+            <h2 className='text-2xl text-light font-bold'>Welcome! {user ? user?.fullName : "Unknown"}</h2>
+          ) : (
+            <h2 className='text-2xl text-light font-bold'>Game Title</h2>
+          )}
+          {user ? (
+            <Button onClick={() => router.push('/dashboard')} className='felx flex-row items-center gap-3'>
+              <p>Get Started</p> <Rocket />
             </Button>
           ) : (
-            <Button className='flex flex-row items-center gap-3'>
+            <Button onClick={() => router.push('/sign-in')} className='flex flex-row items-center gap-3'>
               <p>Sign-in</p> <LogIn />
             </Button>
           )}
