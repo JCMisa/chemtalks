@@ -1,7 +1,7 @@
 'use client'
 
 import React from "react";
-import { ChartColumn, FileClock, Gamepad2, Home, LayoutGrid, Settings, WalletCards } from "lucide-react";
+import { ChartColumn, Gamepad2, Home, LayoutGrid, Settings } from "lucide-react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 
@@ -43,7 +43,7 @@ const ButtomNav = () => {
 
     return (
         <div className="shadow-lg min-h-20 border-t bg-dark-100">
-            <div className="flex gap-5 sm:gap-10 md:hidden justify-center items-center text-center">
+            <div className="flex gap-5 sm:gap-10 justify-center items-center text-center">
                 {menuList.map((menu, index) => (
                     <Link href={menu.path} key={menu.id || index}>
                         <div className="py-3">

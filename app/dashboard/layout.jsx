@@ -6,10 +6,12 @@ const DashboardLayout = ({ children }) => {
     return (
         <div className="">
             <div className='py-10 px-3'>
-                {/* <Header /> */}
+                <div className='hidden xl:block'>
+                    <Header />
+                </div>
                 {children}
             </div>
-            <div className="fixed w-full bottom-0">
+            <div className="fixed w-full bottom-0 xl:hidden">
                 <ButtomNav />
             </div>
         </div>
