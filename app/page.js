@@ -1,15 +1,58 @@
 'use client'
 
+import React, { useEffect } from "react";
 import HomeCarousel from "@/components/custom/HomeCarousel";
 import HomeFooter from "@/components/custom/HomeFooter";
 import { Button } from "@/components/ui/button";
+import { db } from "@/utils/db";
+import { Player } from "@/utils/schema";
 import { UserButton, useUser } from "@clerk/nextjs";
 import { LogIn, Rocket } from "lucide-react";
+import moment from "moment";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
+import { eq } from "drizzle-orm";
 
 export default function Home() {
   const { user } = useUser();
   const router = useRouter();
+
+  useEffect(() => {
+    user && addPlayer();
+  }, [user])
+
+  const addPlayer = async () => {
+    try {
+      const existingPlayer = await db.select()
+        .from(Player)
+        .where(eq(Player?.email, user?.primaryEmailAddress?.emailAddress));
+
+      if (existingPlayer.length > 0) {
+        toast(
+          <p className='text-yellow-500 text-sm font-bold'>Player already exists!</p>
+        )
+        return;
+      } else {
+        const result = await db.insert(Player).values({
+          email: user?.primaryEmailAddress?.emailAddress,
+          name: user?.fullName,
+          image: user?.imageUrl,
+          createdAt: moment().format('MM-DD-yyyy'),
+          points: 0,
+          username: user?.firstName
+        })
+        if (result) {
+          toast(
+            <p className='text-green-500 text-sm font-bold'>Player added successfully!</p>
+          )
+        }
+      }
+    } catch (error) {
+      toast(
+        <p className='text-red-500 text-sm font-bold'>Internal error occured while saving the player</p>
+      )
+    }
+  }
 
   return (
     <div className="relative">
@@ -25,7 +68,10 @@ export default function Home() {
         {/* header and description texts */}
         <div className='flex flex-row items-center justify-between'>
           {user ? (
-            <h2 className='text-2xl text-light font-bold'>Welcome! {user ? user?.fullName : "Unknown"}</h2>
+            <div className='flex flex-col'>
+              <h2 className='text-lg text-light font-bold'>Welcome!</h2>
+              <p className='text-2xl logo-text'>{user ? user?.fullName : "Unknown"}</p>
+            </div>
           ) : (
             <h2 className='text-2xl text-light font-bold'>Game Title</h2>
           )}

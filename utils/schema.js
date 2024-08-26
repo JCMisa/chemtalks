@@ -1,4 +1,4 @@
-import { pgTable, serial, varchar } from "drizzle-orm/pg-core";
+import { integer, pgTable, serial, varchar } from "drizzle-orm/pg-core";
 
 export const Player = pgTable("player", {
     id: serial("id").primaryKey(),
@@ -6,6 +6,6 @@ export const Player = pgTable("player", {
     name: varchar("name"),
     image: varchar("image"),
     createdAt: varchar("createdAt"),
-    points: varchar("points"),
+    points: integer("points"),
     username: varchar("username")
 });
