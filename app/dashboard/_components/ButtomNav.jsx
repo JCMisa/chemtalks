@@ -17,7 +17,7 @@ const ButtomNav = () => {
             id: 2,
             name: "Play",
             icon: <Gamepad2 />,
-            path: "/dashboard/play",
+            path: "/play",
         },
         {
             id: 3,
