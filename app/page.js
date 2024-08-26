@@ -1,6 +1,7 @@
 'use client'
 
 import HomeCarousel from "@/components/custom/HomeCarousel";
+import HomeFooter from "@/components/custom/HomeFooter";
 import { Button } from "@/components/ui/button";
 import { UserButton, useUser } from "@clerk/nextjs";
 import { LogIn, Rocket } from "lucide-react";
@@ -61,10 +62,14 @@ export default function Home() {
           </div>
         </div>
         {/* video game highlights */}
-        <div className='mt-5'>
+        <div className='mt-5 flex flex-col xl:flex-row xl:justify-center gap-5'>
+          <img className="object-cover object-center rounded-3xl" alt="hero" src="https://dummyimage.com/720x600" />
           <img className="object-cover object-center rounded-3xl" alt="hero" src="https://dummyimage.com/720x600" />
         </div>
       </div>
+
+      {/* footer */}
+      <HomeFooter />
     </div>
   );
 }
