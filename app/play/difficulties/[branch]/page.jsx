@@ -1,22 +1,45 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { ArrowLeftCircle, Gamepad2 } from 'lucide-react'
 import { useRouter } from 'next/navigation'
+import { toast } from 'sonner'
+import { chatSession } from '@/utils/GeminiAIModal'
 
-const DifficultiesPage = () => {
+const DifficultiesPage = ({ params }) => {
     const router = useRouter();
+    const [easyQuestion, setEasyQuestion] = useState()
+
+    const generateAiQuestion = async () => {
+        const prompt = `Generate 1 easy question about ${params?.branch} with 3 options for the correct answer, and the correct answer itself, make it in a json format.`;
+        try {
+            const result = await chatSession.sendMessage(prompt);
+            if (result) {
+                setEasyQuestion(result.response.text());
+            }
+
+        } catch (error) {
+            toast(
+                <p className='font-bold text-red-500 text-sm'>Internal error occured while generating questions.</p>
+            )
+            console.log('generate response error: ', error);
+        }
+    }
+
+    useEffect(() => {
+        generateAiQuestion();
+    }, [])
 
     return (
         <div className=''>
             <div className='my-10 p-10'>
                 <div className='flex flex-row items-center justify-between'>
                     <ArrowLeftCircle className='w-10 h-10 cursor-pointer' onClick={() => router.back()} />
-                    <h1 className='text-2xl font-bold'>Select Difficulties</h1>
+                    <h1 className='text-2xl font-bold'>{params?.branch}</h1>
                 </div>
                 <div className='mt-3 flex flex-col xl:flex-row gap-10 w-full'>
                     {/* easy */}
-                    <div className='flex flex-col'>
+                    <div className='flex flex-col' onClick={() => router.push(`/play/questions/${easyQuestion}`)}>
                         <div className='flex flex-col items-center justify-center relative'>
                             <img className="object-cover object-center rounded-3xl dark:bg-gray-900 bg-gray-800" width={1000} height={1000} alt="hero" src="https://wallpapercrafter.com/desktop/119518-The-Wolf-Among-Us-video-games-dark-purple.png" />
                             <Gamepad2 className='absolute w-20 h-20 text-light-100 cursor-pointer hover:animate-pulse' />

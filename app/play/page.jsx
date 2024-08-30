@@ -12,27 +12,27 @@ const PlayPage = () => {
         {
             name: 'Analytical Chemistry',
             desc: "Determining matter's composition and structure.",
-            image: 'https://t4.ftcdn.net/jpg/01/90/46/75/360_F_190467561_oaF4OoGKGXz3p3rIltnkrnwsbnLLjsDN.jpg'
+            routeName: 'AnalyticalChemistry'
         },
         {
             name: 'Organic Chemistry',
             desc: "Studying carbon-containing compounds.",
-            image: 'https://t4.ftcdn.net/jpg/01/90/46/75/360_F_190467561_oaF4OoGKGXz3p3rIltnkrnwsbnLLjsDN.jpg'
+            routeName: 'OrganicChemistry'
         },
         {
             name: 'Inorganic Chemistry',
             desc: "Studying inorganic compounds' properties and reactions.",
-            image: 'https://t4.ftcdn.net/jpg/01/90/46/75/360_F_190467561_oaF4OoGKGXz3p3rIltnkrnwsbnLLjsDN.jpg'
+            routeName: 'InorganicChemistry'
         },
         {
             name: 'Biochemistry',
             desc: "Studying life's chemical processes.",
-            image: 'https://t4.ftcdn.net/jpg/01/90/46/75/360_F_190467561_oaF4OoGKGXz3p3rIltnkrnwsbnLLjsDN.jpg'
+            routeName: 'Biochemistry'
         },
         {
-            name: 'Physical chemistry',
+            name: 'Physical Chemistry',
             desc: "Applying physics to chemistry.",
-            image: 'https://t4.ftcdn.net/jpg/01/90/46/75/360_F_190467561_oaF4OoGKGXz3p3rIltnkrnwsbnLLjsDN.jpg'
+            routeName: 'PhysicalChemistry'
         },
     ]
 
@@ -58,12 +58,12 @@ const PlayPage = () => {
                             </div>
                         </div>
                         {/* icon */}
-                        <img src={'https://cdn3d.iconscout.com/3d/premium/thumb/chemical-reaction-3d-icon-download-in-png-blend-fbx-gltf-file-formats--chemistry-flask-experiment-science-pack-technology-icons-8541758.png'} className='w-30 h-30 absolute bottom-0 right-0 opacity-40' alt='icon' />
+                        <img src={'https://cdn3d.iconscout.com/3d/premium/thumb/chemical-reaction-3d-icon-download-in-png-blend-fbx-gltf-file-formats--chemistry-flask-experiment-science-pack-technology-icons-8541758.png'} className='w-30 h-30 absolute bottom-0 right-0 z-[1]' alt='icon' />
                         {/* selections */}
-                        <div className='flex flex-col gap-5 items-center justify-center mt-5 p-5'>
+                        <div className='flex flex-col gap-5 items-center justify-center mt-5 p-5 z-[2]'>
                             {
                                 branches.map((branch, index) => (
-                                    <BranchCard name={branch.name} desc={branch.desc} image={branch.image} key={index} />
+                                    <BranchCard name={branch.name} desc={branch.desc} routeName={branch.routeName} key={index} />
                                 ))
                             }
                         </div>
