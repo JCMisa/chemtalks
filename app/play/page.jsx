@@ -1,141 +1,71 @@
 'use client'
 
-import React from 'react'
-import { ArrowLeftCircle, Gamepad2 } from 'lucide-react'
+import { ArrowLeftCircle, X } from 'lucide-react';
 import { useRouter } from 'next/navigation'
+import React from 'react'
+import BranchCard from './_components/BranchCard';
 
 const PlayPage = () => {
-    const router = useRouter();
+    const { router } = useRouter();
+
+    const branches = [
+        {
+            name: 'Analytical Chemistry',
+            desc: "Determining matter's composition and structure.",
+            image: 'https://t4.ftcdn.net/jpg/01/90/46/75/360_F_190467561_oaF4OoGKGXz3p3rIltnkrnwsbnLLjsDN.jpg'
+        },
+        {
+            name: 'Organic Chemistry',
+            desc: "Studying carbon-containing compounds.",
+            image: 'https://t4.ftcdn.net/jpg/01/90/46/75/360_F_190467561_oaF4OoGKGXz3p3rIltnkrnwsbnLLjsDN.jpg'
+        },
+        {
+            name: 'Inorganic Chemistry',
+            desc: "Studying inorganic compounds' properties and reactions.",
+            image: 'https://t4.ftcdn.net/jpg/01/90/46/75/360_F_190467561_oaF4OoGKGXz3p3rIltnkrnwsbnLLjsDN.jpg'
+        },
+        {
+            name: 'Biochemistry',
+            desc: "Studying life's chemical processes.",
+            image: 'https://t4.ftcdn.net/jpg/01/90/46/75/360_F_190467561_oaF4OoGKGXz3p3rIltnkrnwsbnLLjsDN.jpg'
+        },
+        {
+            name: 'Physical chemistry',
+            desc: "Applying physics to chemistry.",
+            image: 'https://t4.ftcdn.net/jpg/01/90/46/75/360_F_190467561_oaF4OoGKGXz3p3rIltnkrnwsbnLLjsDN.jpg'
+        },
+    ]
 
     return (
-        <div className=''>
-            <div className='my-10 p-10'>
+        <div className='py-10 px-3'>
+            <div className='flex flex-col'>
+                {/* header */}
                 <div className='flex flex-row items-center justify-between'>
                     <ArrowLeftCircle className='w-10 h-10 cursor-pointer' onClick={() => router.back()} />
-                    <h1 className='text-2xl font-bold'>Select Difficulties</h1>
+                    <h1 className='text-2xl font-bold'>Select Chemistry Branch</h1>
                 </div>
-                <div className='mt-3 flex flex-col xl:flex-row gap-10 w-full'>
-                    {/* easy */}
-                    <div className='flex flex-col'>
-                        <div className='flex flex-col items-center justify-center relative'>
-                            <img className="object-cover object-center rounded-3xl dark:bg-gray-900 bg-gray-800" width={1000} height={1000} alt="hero" src="https://wallpapercrafter.com/desktop/119518-The-Wolf-Among-Us-video-games-dark-purple.png" />
-                            <Gamepad2 className='absolute w-20 h-20 text-light-100 cursor-pointer hover:animate-pulse' />
-                            <p className='absolute top-2 left-3 text-3xl font-bold text-primary-100'>EASY</p>
+                {/* card */}
+                <div className='mt-20'>
+                    <div className='linear-bg min-w-[80%] min-h-[40rem] rounded-lg relative'>
+                        {/* exit button */}
+                        <div className='p-2 linear-bg rounded-full cursor-pointer w-10 h-10 shadow-lg absolute top-2 right-2'>
+                            <X className='text-red-500' />
                         </div>
-                        <div className='flex flex-col p-5'>
-                            <p className='text-2xl font-bold'>Easy Level Information</p>
-                            <div className='p-3'>
-                                <p className='text-lg font-bold text-light-100'>Quiz Parameters</p>
-                                <div className='flex flex-row items-center gap-20 '>
-                                    <div className='flex flex-col gap-4'>
-                                        <p className='text-gray-500'>⚫Number of Questions</p>
-                                        <p className='text-gray-500'>⚫Answer Format</p>
-                                        <p className='text-gray-500'>⚫Question Generation</p>
-                                    </div>
-                                    <div className='flex flex-col gap-4'>
-                                        <p className='font-bold'>⚫5 (five)</p>
-                                        <p className='font-bold'>⚫Multiple Choice (3 options)</p>
-                                        <p className='font-bold'>⚫AI-generated, random</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className='p-3'>
-                                <p className='text-lg font-bold text-light-100'>Scoring</p>
-                                <div className='flex flex-row items-center gap-20 '>
-                                    <div className='flex flex-col gap-4'>
-                                        <p className='text-gray-500'>⚫Points Addition</p>
-                                        <p className='text-gray-500'>⚫Points Deduction</p>
-                                        <p className='text-gray-500'>⚫Top Players</p>
-                                    </div>
-                                    <div className='flex flex-col gap-4'>
-                                        <p className='font-bold'>⚫1 (one)</p>
-                                        <p className='font-bold'>⚫0 (none)</p>
-                                        <p className='font-bold'>⚫Track the highest-scoring users</p>
-                                    </div>
-                                </div>
+                        {/* card header */}
+                        <div className='flex items-center justify-center'>
+                            <div className='bg-primary-200 flex items-center justify-center p-3 max-w-60 rounded-b-xl'>
+                                <h2 className='text-xl font-bold text-light'>Chemistry Branches</h2>
                             </div>
                         </div>
-                    </div>
-                    {/* medium */}
-                    <div className='flex flex-col'>
-                        <div className='flex items-center justify-center relative'>
-                            <img className="object-cover object-center rounded-3xl dark:bg-gray-900 bg-gray-800" width={1000} height={1000} alt="hero" src="https://wallpaperaccess.com/full/2801140.jpg" />
-                            <Gamepad2 className='absolute w-20 h-20 text-light-100 cursor-pointer hover:animate-pulse' />
-                            <p className='absolute top-2 left-3 text-3xl font-bold text-yellow-500'>MEDIUM</p>
-                        </div>
-                        <div className='flex flex-col p-5'>
-                            <p className='text-2xl font-bold'>Medium Level Information</p>
-                            <div className='p-3'>
-                                <p className='text-lg font-bold text-light-100'>Quiz Parameters</p>
-                                <div className='flex flex-row items-center gap-20 '>
-                                    <div className='flex flex-col gap-4'>
-                                        <p className='text-gray-500'>⚫Number of Questions</p>
-                                        <p className='text-gray-500'>⚫Answer Format</p>
-                                        <p className='text-gray-500'>⚫Question Generation</p>
-                                    </div>
-                                    <div className='flex flex-col gap-4'>
-                                        <p className='font-bold'>⚫5 (five)</p>
-                                        <p className='font-bold'>⚫Multiple Choice (3 options)</p>
-                                        <p className='font-bold'>⚫AI-generated, random</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className='p-3'>
-                                <p className='text-lg font-bold text-light-100'>Scoring</p>
-                                <div className='flex flex-row items-center gap-20 '>
-                                    <div className='flex flex-col gap-4'>
-                                        <p className='text-gray-500'>⚫Points Addition</p>
-                                        <p className='text-gray-500'>⚫Points Deduction</p>
-                                        <p className='text-gray-500'>⚫Top Players</p>
-                                    </div>
-                                    <div className='flex flex-col gap-4'>
-                                        <p className='font-bold'>⚫3 (three)</p>
-                                        <p className='font-bold'>⚫1 (one)</p>
-                                        <p className='font-bold'>⚫Track the highest-scoring users</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    {/* hard */}
-                    <div className='flex flex-col'>
-                        <div className='flex items-center justify-center relative'>
-                            <img className="object-cover object-center rounded-3xl dark:bg-gray-900 bg-gray-800" width={1000} height={1000} alt="hero" src="https://images4.alphacoders.com/115/1156648.jpg" />
-                            <Gamepad2 className='absolute w-20 h-20 text-light-100 cursor-pointer hover:animate-pulse' />
-                            <p className='absolute top-2 left-3 text-3xl font-bold text-red-500'>HARD</p>
-                        </div>
-                        <div className='flex flex-col p-5'>
-                            <p className='text-2xl font-bold'>Hard Level Information</p>
-                            <div className='p-3'>
-                                <p className='text-lg font-bold text-light-100'>Quiz Parameters</p>
-                                <div className='flex flex-row items-center gap-20 '>
-                                    <div className='flex flex-col gap-4'>
-                                        <p className='text-gray-500'>⚫Number of Questions</p>
-                                        <p className='text-gray-500'>⚫Answer Format</p>
-                                        <p className='text-gray-500'>⚫Question Generation</p>
-                                    </div>
-                                    <div className='flex flex-col gap-4'>
-                                        <p className='font-bold'>⚫5 (five)</p>
-                                        <p className='font-bold'>⚫Multiple Choice (3 options)</p>
-                                        <p className='font-bold'>⚫AI-generated, random</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className='p-3'>
-                                <p className='text-lg font-bold text-light-100'>Scoring</p>
-                                <div className='flex flex-row items-center gap-20 '>
-                                    <div className='flex flex-col gap-4'>
-                                        <p className='text-gray-500'>⚫Points Addition</p>
-                                        <p className='text-gray-500'>⚫Points Deduction</p>
-                                        <p className='text-gray-500'>⚫Top Players</p>
-                                    </div>
-                                    <div className='flex flex-col gap-4'>
-                                        <p className='font-bold'>⚫5 (five)</p>
-                                        <p className='font-bold'>⚫3 (three)</p>
-                                        <p className='font-bold'>⚫Track the highest-scoring users</p>
-                                    </div>
-                                </div>
-                            </div>
+                        {/* icon */}
+                        <img src={'https://cdn3d.iconscout.com/3d/premium/thumb/chemical-reaction-3d-icon-download-in-png-blend-fbx-gltf-file-formats--chemistry-flask-experiment-science-pack-technology-icons-8541758.png'} className='w-30 h-30 absolute bottom-0 right-0 opacity-40' alt='icon' />
+                        {/* selections */}
+                        <div className='flex flex-col gap-5 items-center justify-center mt-5 p-5'>
+                            {
+                                branches.map((branch, index) => (
+                                    <BranchCard name={branch.name} desc={branch.desc} image={branch.image} key={index} />
+                                ))
+                            }
                         </div>
                     </div>
                 </div>
